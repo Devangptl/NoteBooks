@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 
 const Home = () => {
     const [date, setdate] = useState(0)
@@ -9,9 +10,9 @@ const Home = () => {
     const changedate = (e) => {
         setdate(e.target.value)
     }
-    if (date == '2024-08-08') {
-        console.log("This is right");
-    }
+    // if (date == '2024-08-08') {
+    //     console.log("This is right");
+    // }
     const changenumber = (e) => {
         console.log(numberval)
         setnumberval(e.target.value)
@@ -23,7 +24,23 @@ const Home = () => {
         e.preventDefault()
         setnumberval(0)
         setdescval("")
+        fetchData()
     }
+
+    const fetchData = async()=>{
+        await axios.post("http://localhost:2000/note" ,{
+            numberval,
+            date ,
+            descval
+        }).then((res)=>{
+            console.log(res);
+            
+        })
+    }
+
+   
+
+
     return (
         <div className='vw-100 container-fluid'>
             <h2 className='text-center my-3 '>Enter The Notebook World</h2>
