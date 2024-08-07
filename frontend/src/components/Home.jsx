@@ -21,7 +21,6 @@ const Home = () => {
         setnumberval(0)
         setdescval("")
     }
-
     const fetchData = async()=>{
         await axios.post("http://localhost:2000/note" ,{
             amount,
