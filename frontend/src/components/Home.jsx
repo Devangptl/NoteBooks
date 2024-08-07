@@ -1,45 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from "axios"
 
 const Home = () => {
     const [date, setdate] = useState(0)
-    const [numberval, setnumberval] = useState(0)
-    const [descval, setdescval] = useState("")
-    console.log(typeof date);
+    const [amount, setnumberval] = useState(0)
+    const [description, setdescval] = useState("")
 
     const changedate = (e) => {
         setdate(e.target.value)
     }
-    // if (date == '2024-08-08') {
-    //     console.log("This is right");
-    // }
     const changenumber = (e) => {
-        console.log(numberval)
-        setnumberval(e.target.value)
+        setnumberval(e.target.value < 0 ? 0 : e.target.value)
     }
     const handledesc = (e) => {
         setdescval(e.target.value)
     }
     const handlesubmit = (e) => {
         e.preventDefault()
+        fetchData()
         setnumberval(0)
         setdescval("")
-        fetchData()
     }
 
     const fetchData = async()=>{
         await axios.post("http://localhost:2000/note" ,{
-            numberval,
+            amount,
             date ,
-            descval
+            description
         }).then((res)=>{
             console.log(res);
-            
         })
     }
-
-   
-
 
     return (
         <div className='vw-100 container-fluid'>
@@ -51,12 +42,12 @@ const Home = () => {
                         <input type="date" className='form-control' name="date" id="date" onChange={changedate} value={date} />
                     </div>
                     <div className='my-3'>
-                        <label htmlFor="numberval" className='form-label'>Enter Money : &nbsp; </label>
-                        <input type="number" className='form-control' name='money' id='numberval' value={numberval} onChange={changenumber} />
+                        <label htmlFor="numberval" className='form-label'>Enter Money </label>
+                        <input type="number" className='form-control' name='amount' id='numberval' value={amount} onChange={changenumber} />
                     </div>
                     <div className=' my-3'>
                         <label htmlFor="textarea" className='form-label'>Description </label>
-                        <textarea id='textarea' className='form-control' onChange={handledesc} value={descval} rows={5} cols={50} name='description' placeholder='Enter Description' />
+                        <textarea id='textarea' className='form-control' onChange={handledesc} value={description} rows={5} cols={50} name='description' placeholder='Enter Description' />
                     </div>
                 </div>
                 <div className='d-flex w-25 m-auto'>
