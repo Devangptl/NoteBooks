@@ -3,9 +3,9 @@ import axios from "axios"
 
 const Home = () => {
     const [date, setdate] = useState(0)
-    const [numberval, setnumberval] = useState(0)
-    const [descval, setdescval] = useState("")
-    console.log(numberval);
+    const [amount, setnumberval] = useState()
+    const [description, setdescval] = useState("")
+
 
     const changedate = (e) => {
         setdate(e.target.value)
@@ -14,7 +14,7 @@ const Home = () => {
     //     console.log("This is right");
     // }
     const changenumber = (e) => {
-        console.log(numberval)
+       
         setnumberval(e.target.value)
     }
     const handledesc = (e) => {
@@ -22,16 +22,17 @@ const Home = () => {
     }
     const handlesubmit = (e) => {
         e.preventDefault()
-        setnumberval(0)
-        setdescval("")
         fetchData()
+        setdescval("")
+        setnumberval()
+       
     }
 
     const fetchData = async()=>{
         await axios.post("http://localhost:2000/note" ,{
-            numberval,
+            amount,
             date ,
-            descval
+            description
         }).then((res)=>{
             console.log(res);
             
@@ -52,11 +53,11 @@ const Home = () => {
                     </div>
                     <div className='my-3'>
                         <label htmlFor="numberval" className='form-label'>Enter Money : &nbsp; </label>
-                        <input type="number" className='form-control' name='money' id='numberval' value={numberval} onChange={changenumber} />
+                        <input type="number" placeholder='0' className='form-control' name='money' id='numberval' value={amount} onChange={changenumber} />
                     </div>
                     <div className=' my-3'>
                         <label htmlFor="textarea" className='form-label'>Description </label>
-                        <textarea id='textarea' className='form-control' onChange={handledesc} value={descval} rows={5} cols={50} name='description' placeholder='Enter Description' />
+                        <textarea id='textarea' className='form-control' onChange={handledesc} value={description} rows={5} cols={50} name='description' placeholder='Enter Description' />
                     </div>
                 </div>
                 <div className='d-flex w-25 m-auto'>
