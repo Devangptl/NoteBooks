@@ -4,7 +4,7 @@ const Home = () => {
     const [date, setdate] = useState(0)
     const [numberval, setnumberval] = useState(0)
     const [descval, setdescval] = useState("")
-    console.log(numberval);
+    console.log(typeof date);
 
     const changedate = (e) => {
         setdate(e.target.value)
