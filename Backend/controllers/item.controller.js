@@ -5,19 +5,22 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 const registerItem = asyncHandler( async (req , res) =>{
 
 
-    const {Date , amount, description } = req.body
+    const {date , amount, description } = req.body
 
-    console.log("description : " , description)
+    // console.log(req.body);
+    
 
-    if (
-        [Date , amount , description ].some( (field) => field?.trim() === "" )
-    ) {
-        console.log( "All field are required")
-    }
+    // console.log("description : " , description)
+
+    // if (
+    //     [date , amount , description ].some( (field) => field?.trim() === "" )
+    // ) {
+    //     console.log( "All field are required")
+    // }
 
 
     const item = await Item.create({
-        Date,
+        date,
         amount,
         description ,
       
@@ -28,10 +31,7 @@ const registerItem = asyncHandler( async (req , res) =>{
 
 
     return res
-    .status(201)
-    .json(
-        new ApiResponse(200 , createdUser , "User registered Successfully")
-    )
+   
 
 
 })

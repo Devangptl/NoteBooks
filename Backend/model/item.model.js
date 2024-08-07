@@ -3,16 +3,16 @@ import mongoose from "mongoose";
 const itemSchema = new mongoose.Schema({
 
     date: {
-        type : Date,
-        // require : true
+        type : String,
+        require : true
     },
     amount: {
         type : Number,
-        // require : true
+        require : true
     },
     description: {
         type : String,
-        // require : true
+        require : true
     }
 
 } , {timestamps :true})
