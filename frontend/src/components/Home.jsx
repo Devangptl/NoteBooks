@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios"
+import { AllData } from './AllData'
 
 const Home = () => {
     const [date, setdate] = useState(0)
@@ -32,6 +33,7 @@ const Home = () => {
     }
 
     return (
+        <>
         <div className='vw-100 container-fluid'>
             <h2 className='text-center my-3 '>Enter The Notebook World</h2>
             <form action="#" onSubmit={handlesubmit}>
@@ -55,6 +57,8 @@ const Home = () => {
                 </div>
             </form>
         </div>
+        <AllData/>
+        </>
     )
 }
 
