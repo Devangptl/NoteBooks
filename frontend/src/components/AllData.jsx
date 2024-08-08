@@ -28,6 +28,8 @@ export const AllData = () => {
                 <p>{item?.date}</p>
                 <p>{item?.amount}</p>
                 <p>{item?.description}</p>
+                <p>{item?.description}</p>
+
                 </>
                 )
             })
